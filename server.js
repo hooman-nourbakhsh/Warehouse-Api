@@ -1,5 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const connectDB = require("./config/database");
 const productRoutes = require("./routes/productRoutes");
 const authRoutes = require("./routes/authRoutes");
 const swaggerUi = require("swagger-ui-express");
@@ -9,6 +11,9 @@ let swaggerDocument = require("./swagger/swagger.json");
 
 const app = express();
 let PORT = process.env.PORT || 3000;
+
+// Connect to MongoDB
+connectDB();
 
 // Middleware to parse JSON bodies
 app.use(express.json());
